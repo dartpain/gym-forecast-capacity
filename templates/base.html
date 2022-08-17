@@ -1,0 +1,43 @@
+<!-- templates/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async defer data-website-id="e228d370-504f-4cc1-a7e9-03ab847ba047" src="https://unami.linkor.io/umami.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% assets 'css' %}
+      <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
+
+    <!-- new -->
+    {% assets 'js' %}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+
+    <title>How full is my gym</title>
+  </head>
+  <body class="antialiased bg-body text-body font-body">
+  <section>
+  <nav class="relative">
+    <div class="p-6 flex-initial bg-white shadow">
+      <a class="text-2xl font-semibold" href="/">
+        How packed is my gym?
+      </a>
+    </div>
+
+    </nav>
+
+</section>
+    {% block content %}
+    {% endblock content %}
+  <div class="mb-5 ml-30">
+          <a href="https://www.buymeacoffee.com/toalex" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+        </div>
+  </body>
+
+</html>

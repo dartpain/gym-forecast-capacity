@@ -1,0 +1,98 @@
+<!-- templates/index.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="">
+      <section class="py-8">
+        <div class="container px-4 mx-auto">
+          <div class="pt-4 bg-white shadow rounded">
+            <div class="px-6 border-b border-blue-50">
+              <div class="flex flex-wrap items-center mb-4">
+                <div>
+                  <h3 class="text-xl font-bold">All locations</h3>
+                  <p class="text-sm text-gray-500 font-medium">Click to see more in-depth stats (Virgin Active UK gyms only)</p>
+                </div>
+              </div>
+              <div></div>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="table-auto w-full">
+                <thead class="bg-gray-50">
+                  <tr class="text-xs text-gray-500 text-left">
+                    <th class="flex items-center pl-6 py-4 font-medium">
+
+                      <span>Information</span>
+                    </th>
+                    <th class="py-4 font-medium">Location</th><th class="py-4 font-medium">Capacity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for location in data %}
+                  <tr style="cursor: pointer" onclick="window.location='/gym?gym_id={{ location.id }}';" class="border-b border-blue-50">
+                    <td class="flex items-center py-4 px-6 font-medium">
+
+                      <div class="flex px-4 py-3">
+                        <a target="_blank" href="/gym?gym_id={{ location.id }}">
+                          <p class="text-sm font-medium">{{ location.name }}</p>
+                        </a>
+                      </div>
+                    </td>
+                    <td class="font-medium">
+                      <p class="text-xs text-gray-500">{{ location.address }}</p>
+                    </td>
+                    <td class="pr-6">
+                      <p class="mb-1 text-xs text-indigo-500 font-medium">{{ location.percentage }}%</p>
+
+                      <div class="flex">
+                        <div class="relative h-1 w-48 bg-indigo-50 rounded-full">
+                          <div class="w-full h-full absolute"></div>
+                          {% if location.percentage > 0 %}
+                          <div class="h-full bg-green-500 absolute" style="width:{{ location.percentage }}%"></div>
+                          {% elif location.percentage > 50 %}
+                          <div class="h-full bg-yellow-500 absolute" style="width:{{ location.percentage }}%"></div>
+                          {% elif location.percentage > 80 %}
+                          <div class="h-full bg-red-400 absolute" style="width:{{ location.percentage }}%"></div>
+                          {% elif location.percentage > 99 %}
+                          <div class="h-full bg-red-500 absolute" style="width:100%"></div>
+                          {% endif %}
+                        </div>
+                        <a class="ml-auto" href="#">
+
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+        <div class="container px-4 mx-auto">
+      <p class="mb-2 text-base mt-5">This app shows how full virgin active gyms are in UK. My contact address is contact@mygym.institute. This app is free and something that I use personally. I am not affiliated with Virgin Active</p>
+
+      </div>
+      </section>
+    </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+  var tr = document.getElementsByTagName("tr");
+
+  for (var i = 0; i < tr.length; i++) {
+      tr[i].addEventListener("mouseover", function() {
+        this.classList.add("bg-gray-50");
+
+      });
+
+      tr[i].addEventListener("mouseout", function() {
+          this.classList.remove("bg-gray-50");
+      });
+
+  }
+});
+
+</script>
+{% endblock content %}
